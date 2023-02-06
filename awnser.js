@@ -1,12 +1,10 @@
-const text = [
+const arrayWithObjectsToConvert = [
   { unit: "in", value: 11, conversionTo: "cm" },
   { unit: "ft", value: 22, conversionTo: "cm" },
   { unit: "in", value: 22, conversionTo: "cm" },
 ]
 
-const convert = ({ unit: from, value: currentValue, conversionTo }) => {
-  let result = 0;
-
+const convert = ({ unit: from, value: currentValue, conversionTo: to }) => {
   const conversionValues = {
     m:  { cm: 100,  ft: 3.2808,   m: 1,       in: 39.37    },
     in: { cm: 2.54, ft: 0.083333, m: 39.37,   in: 1        },
@@ -14,8 +12,8 @@ const convert = ({ unit: from, value: currentValue, conversionTo }) => {
     ft: { cm: 2.54, ft: 0.083333, m: 0.30480, in: 30.48037 }
   }
 
-  const currentValueToConvert = conversionValues[from][conversionTo]
-  result = currentValue * currentValueToConvert
+  const currentValueToConvert = conversionValues[from][to]
+  let result = currentValue * currentValueToConvert
   
   return result
 }
@@ -31,4 +29,4 @@ const printConversions = (someObjectToConversions) => {
   });
 };
 
-printConversions(text)
+printConversions(arrayWithObjectsToConvert)
